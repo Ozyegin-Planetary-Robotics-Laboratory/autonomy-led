@@ -1,12 +1,14 @@
 #include <Arduino.h>
 
-#define redPin 5
+#define redPin 7
 #define greenPin 6
-#define bluePin 7
+#define bluePin 5
+#define yellowPin 3 // Change the pin number to 4 for yellow
 
 bool redState = false;
 bool greenState = false;
 bool blueState = false;
+bool yellowState = false;
 
 char command;
 
@@ -14,10 +16,12 @@ void setup() {
   pinMode(redPin, OUTPUT); // Set the redPin as an OUTPUT
   pinMode(greenPin, OUTPUT); // Set the greenPin as an OUTPUT
   pinMode(bluePin, OUTPUT); // Set the bluePin as an OUTPUT
+  pinMode(yellowPin, OUTPUT); // Set the yellowPin as an OUTPUT
 
   digitalWrite(redPin, LOW); // Turn the redPin off
   digitalWrite(greenPin, LOW); // Turn the greenPin off
   digitalWrite(bluePin, LOW); // Turn the bluePin off
+  digitalWrite(yellowPin, LOW); // Turn the yellowPin off
 
   Serial.begin(9600);
 }
@@ -34,6 +38,9 @@ void loop() {
     } else if (command == '2') {
       blueState = !blueState;
       digitalWrite(bluePin, blueState);
+    } else if (command == '3') { // Change the condition for yellow
+      yellowState = !yellowState;
+      digitalWrite(yellowPin, yellowState);
     }
   }
 }
